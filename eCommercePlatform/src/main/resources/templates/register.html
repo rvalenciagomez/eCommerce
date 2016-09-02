@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <title>Register new user</title>
+    <script   src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+    	$("#createUser").click(function(){
+    		var pwd = $("#password").val();
+    		var confirmPwd = $("#confirmPassword").val();
+    		
+    		if(pwd == confirmPwd)
+    		{
+    	      $("#frmCreateUser").submit();
+    		}
+    		else	
+    	    {
+    			alert("The password do not match.");
+    	    }
+    	});
+      });
+    </script>
+  </head>
+  <body>
+  <h2>Register</h2>
+    <form action="" method="POST" id="frmCreateUser">
+      Email: <input type="email" id="email" th:field="${user.email}"/><br/>
+      Password: <input type="password" id="password" th:field="${user.password}"/><br/>
+      Confirm:  <input type="password" id="confirmPassword"/><br/><br/>
+      <input type="button" value="Create User" id="createUser"/>
+    </form>
+  </body>
+</html>
