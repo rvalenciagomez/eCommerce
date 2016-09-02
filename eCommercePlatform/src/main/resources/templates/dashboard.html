@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>eCommerce Dashboard</title> 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"/>
+<link rel="stylesheet" href="css/dashboard.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css"/>
+
+<script   src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<div class="row">
+    <div class="col-xs-12">
+  		<div th:replace="fragments/header :: header"></div>    
+    </div>
+  </div>
+	
+	
+	
+	<div class="row">
+    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+    <!-- <div class="absolute-wrapper"> </div> -->
+    <!-- Menu -->
+    <div class="side-menu">
+    
+    <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <div class="brand-wrapper">
+            <!-- Hamburger -->
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Brand -->
+            <div class="brand-name-wrapper">
+                <a class="navbar-brand" href="#">
+                    Brand
+                </a>
+            </div>
+
+            <!-- Search -->
+            <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+
+            <!-- Search body -->
+            <div id="search" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <form class="navbar-form" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search"/>
+                        </div>
+                        <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Main Menu -->
+    <div class="side-menu-container">
+        <ul class="nav navbar-nav">
+
+            <li><a href="#"><span class="glyphicon glyphicon-send"></span> Link</a></li>
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
+
+            <!-- Dropdown-->
+            <li class="panel panel-default" id="dropdown">
+                <a data-toggle="collapse" href="#dropdown-lvl1">
+                    <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
+                </a>
+
+                <!-- Dropdown level 1 -->
+                <div id="dropdown-lvl1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+
+                            <!-- Dropdown level 2 -->
+                            <li class="panel panel-default" id="dropdown">
+                                <a data-toggle="collapse" href="#dropdown-lvl2">
+                                    <span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
+                                </a>
+                                <div id="dropdown-lvl2" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="#">Link</a></li>
+                                            <li><a href="#">Link</a></li>
+                                            <li><a href="#">Link</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
+			<li style="margin-top:2em;">
+				<p>
+					<label for="amount">Price range:</label> <input type="text"
+							id="amount" readonly="readonly"
+							style="border: 0; color: #f6931f; font-weight: bold;"/>
+					</p>
+				   <div id="slider-range"></div>
+			</li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+    
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="side-body">
+           <h1> &nbsp; </h1>
+           
+           <div id="products">
+           
+	           <div id="placeholderCard1-0" class="col-xs-12 col-sm-6 col-md-3 col-lg-2 card step1">
+	             <button id="createProduct" class="btn btn-primary btn-block" >Create Product</button>
+	           </div>
+	           
+	            <div id="placeholderCard2-0" class="col-xs-12 col-sm-6 col-md-3 col-lg-2 card step2 hidden">
+	             <p>Please type in the image Url.</p>
+	             <input type="text" id="imageUrl-0" placeholder="paste img url"/>
+	             <button id="addImageUrl-0" class="btn btn-primary btn-block" >Next</button>
+	           </div>
+	           
+	           <div id="placeholderCard3-0" class="col-xs-12 col-sm-6 col-md-3 col-lg-2 card step2 hidden">
+	             <p>Please add a short description</p>
+	             <input type="text" id="shortDescription-0" placeholder="add a Short Description"/>
+	             <button id="addShortDescription-0" class="btn btn-primary btn-block" >Next</button>
+	           </div> 
+	           
+	            <div id="placeholderCard4-0" class="col-xs-12 col-sm-6 col-md-3 col-lg-2 card step2 hidden">
+	             <p>Please type in the price of your product:</p>
+	             <input type="text" id="price-0" placeholder="$40"/>
+	             <button id="addPrice-0" class="btn btn-primary btn-block" >Finish</button>
+	           </div> 
+	           
+	             
+	       </div><!-- div de products  -->
+	         
+	          <div id="productsQuery">
+	        
+	           <div  th:each="product : ${productList}" th:object="${product}">
+	               <div th:id="'productCard-' + ${product.id}" class="col-xs-12 col-sm-6 col-md-3 col-lg-2 card">
+		             <img th:id="'imageUrl-' + ${product.id}"  th:src="*{imageUrl}" class="center-block"/>
+		             <button class="btn btn-info center-block overlayEditButton hidden" th:id="${'editButton-' + {product.id}}" >Edit</button>
+		             <button class="btn btn-danger center-block overlayDeleteButton hidden" th:id="${'deleteButton-' + {product.id}}" >Delete</button>
+		             <div th:id="'shortDescription' + ${product.id}" th:text="*{shortDescription}" class="shortDesc" >un texto</div>
+		             <span th:text="${'$'+ #numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"></span>
+		           </div>
+	           </div>  
+           </div>   <!-- div de productsQuery  -->
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/dashboard.js"></script>
+
+</body>
+
+
+</html>
